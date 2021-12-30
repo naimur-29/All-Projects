@@ -36,7 +36,7 @@ def use_input():
         box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "O"
     else:
         box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "X"
-
+    
 
 
 while won == False:
