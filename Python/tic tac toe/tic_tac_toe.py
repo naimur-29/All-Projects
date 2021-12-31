@@ -308,7 +308,7 @@ while replay == '':
                                     break
                                 else:
                                     user = int(input("Wrong position...\nEnter the correct position: "))
-                        
+                        inputs.append(user)
                         break
                     except:
                         print("Wrong position...")
