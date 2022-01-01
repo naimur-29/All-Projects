@@ -77,11 +77,12 @@ def print_result_single():
             clear()
 
 def use_input():
-    if count%2 != 0:
-        box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "O"
-    else:
-        box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "X"
-    inputs.append(user)
+    if user not in inputs:
+        if count%2 != 0:
+            box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "O"
+        else:
+            box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "X"
+        inputs.append(user)
 
 def t2Bot1(inp):
     if inp == 4 or inp == 8:
@@ -115,9 +116,12 @@ def t2Bot2(inp):
                 return 4
     elif inputs[len(inputs)-3] == 1 or inputs[len(inputs)-3] == 9:
         if inp == 4 or inp == 8:
-            return 3
+            if inp == 8 and inputs[len(inputs)-3] == 9:
+                return 4
+            else:
+                return 3
         else:
-            if inputs[len(inputs)-2] == 9:
+            if inputs[len(inputs)-3] == 1:
                 return 8
             else:
                 return 4
@@ -199,25 +203,41 @@ def t2Bot3(inp):
             if inputs[len(inputs)-5] == 2:
                 if inp == 4:
                     return 6
+                elif inp == 9:
+                    return 1
+                elif inp == 1:
+                    return 9
                 else:
                     return 4
             if inputs[len(inputs)-5] == 4:
                 if inp == 2:
                     return 8
+                elif inp == 9:
+                    return 1
+                elif inp == 1:
+                    return 9
                 else:
                     return 2
             if inputs[len(inputs)-5] == 6:
                 if inp == 2:
                     return 8
+                elif inp == 9:
+                    return 1
+                elif inp == 1:
+                    return 9
                 else:
                     return 2
             else:
                 if inp == 4:
                     return 6
+                elif inp == 9:
+                    return 1
+                elif inp == 1:
+                    return 9
                 else:
                     return 4
     else:
-        if inp == 8:
+        if inputs[len(inputs)-3] == 8:
             return 4
         else:
             return 8
@@ -226,8 +246,8 @@ def t2Bot4():
     for i in range(1, 10):
         if i not in inputs:
             return i
+  
             
-
 
 replay = ''
 while replay == '':
@@ -235,10 +255,10 @@ while replay == '':
     box_1 = [" ", " ", " "]
     box_2 = [" ", " ", " "]
     box = [box_0, box_1, box_2]
+    inputs.clear()
     count = 0
     user = 0
     won = False
-    inputs = list()
     clear()
     for i in range(len(welcome)+1):
         print(welcome[0:i])
@@ -312,7 +332,10 @@ while replay == '':
                         break
                     except:
                         print("Wrong position...")
-                use_input()
+                if count%2 != 0:
+                    box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "O"
+                else:
+                    box[int(inp_dict[user-1][0])][int(inp_dict[user-1][1])] = "X"
                 if (box_0[0] == box_0[1] == box_0[2] != ' ') or (box_1[0] == box_1[1] == box_1[2] != ' ') or (box_2[0] == box_2[1] == box_2[2] != ' ') or (box_0[0] == box_1[0] == box_2[0] != ' ') or (box_0[1] == box_1[1] == box_2[1] != ' ') or (box_0[2] == box_1[2] == box_2[2] != ' ') or (box_0[0] == box_1[1] == box_2[2] != ' ') or (box_0[2] == box_1[1] == box_2[0] != ' '):
                     won = True
             print_result_single()
@@ -343,7 +366,6 @@ while replay == '':
                                     break
                                 else:
                                     user = int(input("Wrong position...\nEnter the correct position: "))
-                        inputs.append(user)
                         break
                     except:
                         print("Wrong position...")
