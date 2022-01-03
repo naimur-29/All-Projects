@@ -52,11 +52,11 @@ def print_result_multi():
     for i in range(len(winner)+1):
         print(winner[0:i])
         if i == len(winner):
-            sleep(0.5)
+            sleep(0.8)
             call_screen_animated()
             print(winner)
         else:
-            sleep(0.05)
+            sleep(0.001)
             clear()
 
 def print_result_single():
@@ -69,7 +69,7 @@ def print_result_single():
     for i in range(len(winner)+1):
         print(winner[0:i])
         if i == len(winner):
-            sleep(1)
+            sleep(0.8)
             call_screen_animated()
             print(winner)
         else:
@@ -211,13 +211,12 @@ def t2Bot3(inp):
             elif inp == 1:
                 return 9
             else:
-                return 1
-            
+                return 1 
     else:
-        if inputs[len(inputs)-3] == 8:
-            return 4
+        if inp == 4:
+            return 5
         else:
-            return 8
+            return 4
 
 def t2Bot4(inp):
     if inp == 2:
