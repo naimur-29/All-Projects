@@ -3,14 +3,14 @@ from os import name, system
 from time import sleep
 
 matrix = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0]
+    [' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ']
 ]
-elements = [0, 0, 0, 1]
+elements = ['.', '.', '.', 'O']
 
 def clear():
     if name == 'nt':
@@ -24,16 +24,16 @@ def append(a, b):
 
 def devil(a, b):
     try:
-        if matrix[a-1][b] == 1:
+        if matrix[a-1][b] == 'O':
             c, d = a-1, b
             append(c, d)
-        if matrix[a+1][b] == 1:
+        if matrix[a+1][b] == 'O':
             c, d = a+1, b
             append(c, d)
-        if matrix[a][b-1] == 1:
+        if matrix[a][b-1] == 'O':
             c, d = a, b-1
             append(c, d)
-        if matrix[a][b+1] == 1:
+        if matrix[a][b+1] == 'O':
             c, d = a, b+1
             append(c, d)
     except:
@@ -57,7 +57,7 @@ while 1 == 1:
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if i == 0 or i == 5 or j == 0 or j == 5:
-                if matrix[i][j] == 1:
+                if matrix[i][j] == 'O':
                     append(i, j)
                     devil(i, j)
 
@@ -67,14 +67,14 @@ while 1 == 1:
 
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
-            if [i, j] not in pass_list and matrix[i][j] == 1:
-                matrix[i][j] = 0
+            if [i, j] not in pass_list and matrix[i][j] == 'O':
+                matrix[i][j] = '.'
                 clear()
                 for m in matrix:
                     for n in m:
                         print(n, end=' ')
                     print()
                 print()
-                sleep(0.5)
-    print("generating a new matrix...")
+                sleep(0.1)
+    print("cleaning complete\ngenerating a new matrix...")
     sleep(3)
