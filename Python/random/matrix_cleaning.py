@@ -47,8 +47,8 @@ while 1 == 1:
     for i in matrix:
         for j in range(len(i)):
             i[j] = random.choice(elements)
-
     clear()
+
     for i in matrix:
         for j in i:
             print(j, end=' ')
@@ -56,18 +56,15 @@ while 1 == 1:
     print()
     sleep(1)
     pass_list = list()
-
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if i == 0 or i == len(matrix)-1 or j == 0 or j == len(matrix[i])-1:
                 if matrix[i][j] == 'O':
                     append(i, j)
                     devil(i, j)
-
     for count in range(len(matrix)):
         for a, b in pass_list:
             devil(a, b)
-
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if [i, j] not in pass_list and matrix[i][j] == 'O':
