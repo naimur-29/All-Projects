@@ -14,7 +14,7 @@ matrix = [
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',]
 ]
 elements = ['.', '.', '.', 'O']
-
+# functions:
 def clear():
     if name == 'nt':
         _ = system('cls')
@@ -41,8 +41,8 @@ def devil(a, b):
             append(c, d)
     except:
         pass
-
-
+    
+# main:
 while 1 == 1:
     for i in matrix:
         for j in range(len(i)):
