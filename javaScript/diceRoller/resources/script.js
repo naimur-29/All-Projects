@@ -7,12 +7,12 @@ let scoreSum = 0;
 // defining the dice
 const imgDice = document.querySelector('.dice');
 const objDice = {
-  1: 'dice-1.png',
-  2: 'dice-2.png',
-  3: 'dice-3.png',
-  4: 'dice-4.png',
-  5: 'dice-5.png',
-  6: 'dice-6.png',
+  1: 'resources/dice-1.png',
+  2: 'resources/dice-2.png',
+  3: 'resources/dice-3.png',
+  4: 'resources/dice-4.png',
+  5: 'resources/dice-5.png',
+  6: 'resources/dice-6.png',
 };
 
 // defining player1
