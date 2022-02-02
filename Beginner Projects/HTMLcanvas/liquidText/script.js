@@ -5,7 +5,14 @@ canvas.height = window.innerHeight;
 let particleArray = [];
 let adjustX = 0;
 let adjustY = 0;
-// const colorArr = ["blue"];
+const colorArr = ["white", "lime", "red"];
+
+let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+gradient.addColorStop(0, "magenta");
+gradient.addColorStop(0.25, "cyan");
+gradient.addColorStop(0.5, "blue");
+gradient.addColorStop(0.75, "lime");
+gradient.addColorStop(1, "red");
 
 // handle mouse
 const mouse = {
@@ -37,8 +44,9 @@ class Particle {
     this.density = Math.random() * 30 + mouse.radius / 50;
   }
   draw() {
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "white";
     // ctx.fillStyle = colorArr[Math.trunc(Math.random() * (colorArr.length - 1))];
+    // ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
@@ -60,14 +68,17 @@ class Particle {
       this.y -= directionY;
       this.size = 1;
 
-      // ctx.fillStyle = "white";
-      // ctx.fill();
+      ctx.fillStyle = gradient;
+      // ctx.fillStyle =
+      //   colorArr[Math.trunc(Math.random() * (colorArr.length - 1))];
+      ctx.fill();
     } else {
       this.size = 2;
       if (this.x !== this.baseX) {
         let dx = this.x - this.baseX;
         this.x -= dx / 10;
       }
+
       if (this.y !== this.baseY) {
         let dy = this.y - this.baseY;
         this.y -= dy / 10;
