@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        overflow: hidden;
+        font-family: monospace;
+        background-color: rgba(0, 0, 0, 0.95);
+        line-height: 1.7;
+      }
+      .canvas {
+        background-color: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="canvas"></canvas>
+
+    <script>
+      // setting canvas and defining variables
+      const canvas = document.querySelector(".canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight - window.innerHeight / 4;
+      ctx.font = "1.5rem monospace";
+      let gameFrame = 0;
+      let rightPos = false;
+      let leftPos = false;
+      let topPos = false;
+      let bottomPos = false;
+      let colision = false;
+      let score = 0;
+      let highScore = 0;
+
+      function resetPos() {
+        rightPos = false;
+        leftPos = false;
+        topPos = false;
+        bottomPos = false;
+      }
+
+      // handling the mouse
+      window.addEventListener("click", (event) => {
+        console.log(event.x, event.y);
+        if (event.y > window.innerHeight - window.innerHeight / 4) {
+          if (event.x > window.innerWidth - window.innerWidth / 4) {
+            if (!leftPos) {
+              resetPos();
+              rightPos = true;
+            }
+          } else if (event.x < window.innerWidth / 4) {
+            if (!rightPos) {
+              resetPos();
+              leftPos = true;
+            }
+          } else if (
+            event.x > window.innerWidth / 4 &&
+            event.x < window.innerWidth - window.innerWidth / 4
+          ) {
+            if (
+              event.y > window.innerHeight - window.innerHeight / 4 &&
+              event.y < window.innerHeight - window.innerHeight / 8
+            ) {
+              if (!bottomPos) {
+                resetPos();
+                topPos = true;
+              }
+            } else {
+              if (!topPos) {
+                resetPos();
+                bottomPos = true;
+              }
+            }
+          }
+        }
+      });
+
+      // player
+      class Snake {
+        constructor(x, y) {
+          (this.x = x),
+            (this.y = y),
+            (this.sizeX = 20),
+            (this.sizeY = 20),
+            (this.speed = 5);
+        }
+        update() {
+          if (rightPos) {
+            if (this.x >= canvas.width) {
+              this.x = 0 - this.sizeX;
+              if (score > highScore) highScore = score;
+              score = 0;
+            } else {
+              this.x += this.speed;
+            }
+          } else if (leftPos) {
+            if (this.x <= 0 - this.sizeX) {
+              this.x = canvas.width;
+              if (score > highScore) highScore = score;
+              score = 0;
+            } else {
+              this.x -= this.speed;
+            }
+          } else if (topPos) {
+            if (this.y <= 0 - this.sizeY) {
+              this.y = canvas.height;
+              if (score > highScore) highScore = score;
+              score = 0;
+            } else {
+              this.y -= this.speed;
+            }
+          } else if (bottomPos) {
+            if (this.y >= canvas.height) {
+              this.y = 0 - this.sizeY;
+              if (score > highScore) highScore = score;
+              score = 0;
+            } else {
+              this.y += this.speed;
+            }
+          }
+        }
+        draw() {
+          ctx.fillStyle = "lime";
+          ctx.beginPath();
+          ctx.fillRect(this.x, this.y, this.sizeX, this.sizeY);
+          ctx.fill();
+          ctx.closePath();
+        }
+      }
+      const player = new Snake(0, 0);
+
+      // food
+      class Apple {
+        constructor() {
+          this.x = Math.trunc(Math.random() * (canvas.width - 20));
+          this.y = Math.trunc(Math.random() * (canvas.height - 20));
+          this.size = 16;
+        }
+        draw() {
+          ctx.fillStyle = "red";
+          ctx.beginPath();
+          ctx.fillRect(this.x, this.y, this.size, this.size);
+          ctx.fill();
+          ctx.closePath();
+        }
+        check() {
+          const dx = player.x + 10 - (this.x + this.size / 2);
+          const dy = player.y + 10 - (this.y + this.size / 2);
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance <= 16) colision = true;
+        }
+      }
+
+      const foodArr = [];
+      function handleFood() {
+        if (foodArr.length === 0) {
+          foodArr.push(new Apple());
+        } else {
+          foodArr[0].draw();
+          foodArr[0].check();
+          if (colision) {
+            foodArr.splice(0, 1);
+            colision = false;
+            score += 1;
+          }
+        }
+      }
+
+      function animate() {
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        player.update();
+        player.draw();
+        handleFood();
+        ctx.fillStyle = "white";
+        ctx.fillText(`SCORE: ${score}`, 5, 20);
+        ctx.fillText(`HIGH_SCORE: ${highScore}`, 5, 40);
+
+        gameFrame++;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    </script>
+  </body>
+</html>

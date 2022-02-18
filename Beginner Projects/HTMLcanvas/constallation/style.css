@@ -5,12 +5,12 @@
 }
 
 body {
-  overflow: hidden;
-  background: black;
+  background-color: black;
 }
 
-canvas {
+.canvas1 {
   position: absolute;
   top: 0;
   left: 0;
+  height: 100vh;
 }
