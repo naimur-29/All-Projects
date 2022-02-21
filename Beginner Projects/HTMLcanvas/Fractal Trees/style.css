@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+.canvas1 {
+  position: absolute;
+  background: white;
+  width: 100%;
+  height: 100%;
+}
+
+.generate-tree-btn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px;
+  border-radius: 50px;
+  background: brown;
+  color: white;
+  font-size: 20px;
+  width: 300px;
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.5);
+}
