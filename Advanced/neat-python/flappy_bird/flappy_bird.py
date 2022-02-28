@@ -1,6 +1,3 @@
-from cmath import pi
-import configparser
-from re import T
 import pygame
 import neat
 import time
