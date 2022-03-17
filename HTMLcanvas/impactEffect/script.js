@@ -20,9 +20,7 @@ class ImpactParticle {
     this.y = mouse.y;
     this.size = 1;
     this.speed = 18;
-    // this.color = "#f00";
-    this.opacity = 0.1;
-    this.color = `rgba(0, 255, 255, ${this.opacity})`;
+    this.color = "#0ff";
   }
 
   draw() {
@@ -36,8 +34,6 @@ class ImpactParticle {
 
   update() {
     this.size += this.speed;
-    this.opacity += 0.01;
-    this.color = `rgba(0, 255, 255, ${this.opacity})`;
   }
 }
 
@@ -74,7 +70,7 @@ window.addEventListener("click", () => {
 });
 
 function animate() {
-  ctxMain.fillStyle = "rgba(255, 255, 255, 0.05)";
+  ctxMain.fillStyle = "rgba(0, 0, 0, 0.05)";
   ctxMain.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
 
   updateImpactParticles();

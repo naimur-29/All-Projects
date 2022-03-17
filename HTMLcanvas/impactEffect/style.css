@@ -21,5 +21,6 @@ body {
 }
 
 .main-canvas {
+  background: #000;
   position: absolute;
 }
