@@ -1,6 +1,5 @@
 import cv2 
-import cvzone # 1.4.1
-# mediapipe 0.8.7
+import cvzone 
 from cv2 import drawContours
 from cvzone.HandTrackingModule import HandDetector
 from matplotlib.pyplot import draw
