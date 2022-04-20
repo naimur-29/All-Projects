@@ -1,0 +1,21 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: rgb(100, 100, 100);
+}
+
+canvas {
+  display: block;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.35s ease;
+}
+
+canvas:hover {
+  box-shadow: 0 0 20px rgba(0, 150, 0, 0.4);
+  transition: box-shadow 0.35s ease;
+}
