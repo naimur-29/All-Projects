@@ -5,7 +5,9 @@ let totalPoints = 5;
 let shortestDist;
 
 function setup() {
-  createCanvas(500, 500);
+  let canvas = createCanvas(500, 500);
+  canvas.addClass("canvas-01");
+
   for (let i = 0; i < totalPoints; i++) {
     points.push(createVector(random(25, width - 25), random(25, height - 25)));
     order.push(i);
