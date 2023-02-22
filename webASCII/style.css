@@ -1,0 +1,21 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #000;
+  color: #fff;
+  font-family: Courier;
+  font-size: 1px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: min(100vh);
+  gap: 1px;
+  letter-spacing: 1px;
+  rotate: 90deg;
+}
