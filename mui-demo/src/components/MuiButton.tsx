@@ -1,7 +1,26 @@
-import { Typography, Button, IconButton, Stack } from "@mui/material";
+import { useState } from "react";
+import {
+  Typography,
+  Button,
+  ButtonGroup,
+  IconButton,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 export const MuiButton = () => {
+  const [toggleValues, setToggleValues] = useState<string | null>(null);
+  console.log({ toggleValues });
+
+  const handleToggleChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    updatedValues: string | null
+  ) => {
+    setToggleValues(updatedValues);
+  };
+
   return (
     <Stack spacing={4}>
       <Typography variant={"h3"}>Buttons</Typography>
@@ -106,6 +125,40 @@ export const MuiButton = () => {
         <IconButton aria-label="send" color="success" size="small">
           <SendIcon />
         </IconButton>
+      </Stack>
+
+      <Stack direction="row">
+        <ButtonGroup
+          variant="contained"
+          orientation="vertical"
+          size="small"
+          color="secondary"
+          aria-label="alignment button group"
+        >
+          <Button>Left</Button>
+          <Button>Center</Button>
+          <Button>Right</Button>
+        </ButtonGroup>
+      </Stack>
+
+      <Stack direction={"row"}>
+        <ToggleButtonGroup
+          aria-label="text formatting"
+          value={toggleValues}
+          onChange={handleToggleChange}
+          color="secondary"
+          exclusive
+        >
+          <ToggleButton value="B">
+            <SendIcon />
+          </ToggleButton>
+          <ToggleButton value="I">
+            <SendIcon />
+          </ToggleButton>
+          <ToggleButton value="U">
+            <SendIcon />
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Stack>
     </Stack>
   );
